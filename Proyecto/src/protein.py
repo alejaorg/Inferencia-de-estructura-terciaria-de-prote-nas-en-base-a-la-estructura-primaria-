@@ -78,6 +78,8 @@ class Protein:
         self.residues[0].get_atom("CA").set_coor(CA)
         self.residues[0].get_atom("C").set_coor(C)
         
+        O = place_atom(N, CA, C, BOND_LENGTHS[("C", "O")], BOND_ANGLES[("CA","C","O")], 0.0)
+        self.residues[0].get_atom("O").set_coor(O)
         prev = [N, CA, C]
         
         for i in range(1, len(self.residues)):
@@ -89,10 +91,12 @@ class Protein:
             new_N = place_atom(prev[0], prev[1], prev[2], BOND_LENGTHS[("C", "N")], BOND_ANGLES[("CA", "C", "N")], omega)
             new_CA = place_atom(prev[1], prev[2], new_N, BOND_LENGTHS[("N", "CA")], BOND_ANGLES[("C", "N", "CA")], phi)
             new_C = place_atom(prev[2], new_N, new_CA, BOND_LENGTHS[("CA", "C")], BOND_ANGLES[("N", "CA", "C")], psi)
+            new_O = place_atom(new_N, new_CA, new_C,  BOND_LENGTHS[("C", "O")], BOND_ANGLES[("CA","C","O")], 0.0)
             
             res.get_atom("N").set_coor(new_N)
             res.get_atom("CA").set_coor(new_CA)
             res.get_atom("C").set_coor(new_C)
+            res.get_atom("O").set_coor(new_O)
             
             prev = [new_N, new_CA, new_C]
             

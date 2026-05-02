@@ -166,3 +166,13 @@ GEOMETRY = {
     "rotamers": ROTAMERS,
     "rotamer_probs": ROTAMER_PROBS
 }
+
+VAN_DER_WAALS_RADIUS = {
+    "C":  1.70,
+    "N":  1.55,
+    "O":  1.52,
+    "S":  1.80,
+    "H":  1.20,
+}
+
+VAN_DER_WAALS_TOLERANCE = 0.8

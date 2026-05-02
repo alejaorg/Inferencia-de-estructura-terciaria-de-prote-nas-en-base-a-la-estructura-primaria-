@@ -65,17 +65,65 @@ CA_DISTANCE_STATS = {
 }
 
 CHI_DEFINITIONS = {
+
+    # Glicina no tiene CB y Alaina solo tiene un CB por lo que no es rotable
+    "GLY": [],
+    "ALA": [],
+
     "SER": [("N", "CA", "CB", "OG")],
+    "CYS": [("N", "CA", "CB", "SG")],
     "THR": [("N", "CA", "CB", "OG1")],
     "VAL": [("N", "CA", "CB", "CG1")],
-    "LEU": [
+
+    "ASP": [
         ("N", "CA", "CB", "CG"),
-        ("CA", "CB", "CG", "CD1")
+        ("CA", "CB", "CG", "OD1")
+    ],
+    "ASN": [
+        ("N", "CA", "CB", "CG"),
+        ("CA", "CB", "CG", "OD1")
+    ],
+    "HIS": [
+        ("N", "CA", "CB", "CG"),
+        ("CA", "CB", "CG", "ND1")
     ],
     "ILE": [
         ("N", "CA", "CB", "CG1"),
         ("CA", "CB", "CG1", "CD1")
     ],
+    "LEU": [
+        ("N", "CA", "CB", "CG"),
+        ("CA", "CB", "CG", "CD1")
+    ],
+    "PHE": [
+        ("N", "CA", "CB", "CG"),
+        ("CA", "CB", "CG", "CD1")
+    ],
+    "TYR": [
+        ("N", "CA", "CB", "CG"),
+        ("CA", "CB", "CG", "CD1")
+    ],
+    "TRP": [
+        ("N", "CA", "CB", "CG"),
+        ("CA", "CB", "CG", "CD1")
+    ],
+
+    "GLU": [
+        ("N", "CA", "CB", "CG"),
+        ("CA", "CB", "CG", "CD"),
+        ("CB", "CG", "CD", "OE1")
+    ],
+    "GLN": [
+        ("N", "CA", "CB", "CG"),
+        ("CA", "CB", "CG", "CD"),
+        ("CB", "CG", "CD", "OE1")
+    ],
+    "MET": [
+        ("N", "CA", "CB", "CG"),
+        ("CA", "CB", "CG", "SD"),
+        ("CB", "CG", "SD", "CE")
+    ],
+
     "LYS": [
         ("N", "CA", "CB", "CG"),
         ("CA", "CB", "CG", "CD"),
@@ -87,6 +135,12 @@ CHI_DEFINITIONS = {
         ("CA", "CB", "CG", "CD"),
         ("CB", "CG", "CD", "NE"),
         ("CG", "CD", "NE", "CZ")
+    ],
+
+
+    "PRO": [
+        ("N", "CA", "CB", "CG"),
+        ("CA", "CB", "CG", "CD")
     ]
 }
 

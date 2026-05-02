@@ -13,7 +13,7 @@ from annealing import *
 from proteinParser import export_pdb
 from proteinViewer import ProteinViewer
 
-p = Protein("ACDHI")
+p = Protein("AQNLERDWI")
 p.init_random_structure()
 
 

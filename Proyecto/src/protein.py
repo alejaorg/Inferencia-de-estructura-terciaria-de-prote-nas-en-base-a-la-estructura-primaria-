@@ -6,7 +6,9 @@ from experimental_data import (
     RAMACHANDRAN,
     OMEGA,
     VAN_DER_WAALS_RADIUS,
-    VAN_DER_WAALS_TOLERANCE
+    VAN_DER_WAALS_TOLERANCE,
+    BIFURCATIONS,
+    ARG_BIFURCATION
 )
 
 from experimental_data import GEOMETRY
@@ -300,6 +302,7 @@ def try_build_sidechain(residue, built_residues):
             residue.get_atom(d_name).set_coor(d)
             atoms[d_name] = d
             chi_angles.append(angle)
+            
         if residue.name in ("VAL", "ILE", "THR"):
             cg2_atom = residue.get_atom("CG2")
             if cg2_atom is not None:
@@ -310,6 +313,13 @@ def try_build_sidechain(residue, built_residues):
         
         if residue.name in ("PHE", "TYR", "HIS"):
             place_aromatic_ring(residue, atoms, chi_angles[1])
+            
+        if residue.name in BIFURCATIONS:
+            place_bifurcation(residue, atoms)
+            
+        if residue.name == "TRP":
+            place_TRP(residue, atoms, chi_angles[1])
+            
         if not detect_clashes_between(residue, built_residues):
             return True
     return False
@@ -432,6 +442,132 @@ def detect_clashes_between(res, other_res, tolerance=VAN_DER_WAALS_TOLERANCE):
                     clashes.append((atom_i.name, atom_j.name, dist))
 
     return clashes
+
+def place_bifurcation(residue, atoms):
+    
+    if residue.name == "ARG":
+        b = ARG_BIFURCATION
+        
+        pre = grand_grandparent(atoms, b["grandparent"])
+        if pre is None:
+            return
+        
+        for atom, offset in [(b["atom1"], b["offset1"]),
+                             (b["atom2"], b["offset2"])]:
+            length = BOND_LENGTHS.get(("CZ", atom)) 
+            b_angle = BOND_ANGLES.get(("NE", "CZ", atom))
+            
+            coord = place_atom(pre, 
+                               atoms[b["grandparent"]],
+                               atoms[b["parent"]],
+                               length,
+                               b_angle,
+                               offset)  
+            residue.get_atom(atom).set_coor(coord)
+            atoms[atom] = coord
+        return 
+    
+    atom1, atom2, parent, grandparent, offset = BIFURCATIONS[residue.name]
+    
+    pre = grand_grandparent(atoms, grandparent)
+    if pre is None:
+        return
+    
+    chi = calculate_dihedral(pre,
+                            atoms[grandparent],
+                            atoms[parent],
+                            atoms[atom1])
+    
+    length = BOND_LENGTHS.get((parent, atom2))
+    b_angle = BOND_ANGLES.get((grandparent, parent, atom2))
+    
+    coord = place_atom(pre,
+                       atoms[grandparent],
+                       atoms[parent],
+                       length,
+                       b_angle,
+                       chi + offset)
+    residue.get_atom(atom2).set_coor(coord)
+    atoms[atom2] = coord
+    
+def grand_grandparent(atoms, grandparent):
+    chain = ["N", "CA", "CB", "CG", "CD", "NE", "CZ"]
+    if grandparent in chain:
+        idx = chain.index(grandparent)
+        if idx > 0:
+            grandGrandpa = chain[idx-1]
+            return atoms.get(grandGrandpa, None)
+    return None
+    
+def calculate_dihedral(a, b, c , d):
+    b1 = b - a
+    b2 = c - b
+    b3 = d - c
+
+    n1 = normalize(np.cross(b1, b2))
+    n2 = normalize(np.cross(b2, b3))
+    m = np.cross(n1, normalize(b2))
+    
+    x = np.dot(n1, n2)
+    y = np.dot(m, n2)
+    
+    return np.degrees(np.arctan2(y, x))
+
+def place_TRP(residue, atoms, chi2):
+    
+    CA = atoms["CA"]
+    CB = atoms["CB"]
+    CG = atoms["CG"]
+    CD1 = atoms["CD1"]
+    
+    CD2 = place_atom(CA, CB, CG,
+                     BOND_LENGTHS[("CG", "CD2")],
+                     BOND_ANGLES[("CB", "CG", "CD2")],
+                     chi2 + 180.0)
+    residue.get_atom("CD2").set_coor(CD2)
+    atoms["CD2"] = CD2
+    
+    NE1 = place_atom(CB, CG, CD1,
+                     BOND_LENGTHS[("CD1", "NE1")],
+                     BOND_ANGLES[("CG", "CD1", "NE1")],
+                     180.0)
+    residue.get_atom("NE1").set_coor(NE1)
+    atoms["NE1"] = NE1
+
+    CE2 = place_atom(CG, CD1, NE1,
+                     BOND_LENGTHS[("NE1", "CE2")],
+                     BOND_ANGLES[("CD1", "NE1", "CE2")],
+                     180.0)
+    residue.get_atom("CE2").set_coor(CE2)
+    atoms["CE2"] = CE2
+    
+    CE3 = place_atom(CB, CG, CD2,
+                     BOND_LENGTHS[("CD2", "CE3")],
+                     BOND_ANGLES[("CG", "CD2", "CE3")],
+                     180.0)
+    residue.get_atom("CE3").set_coor(CE3)
+    atoms["CE3"] = CE3
+    
+    CZ2 = place_atom(CD1, NE1, CE2,
+                     BOND_LENGTHS[("CE2", "CZ2")],
+                     BOND_ANGLES[("NE1", "CE2", "CZ2")],
+                     180.0)
+    residue.get_atom("CZ2").set_coor(CZ2)
+    atoms["CZ2"] = CZ2
+
+    CZ3 = place_atom(CG, CD2, CE3,
+                     BOND_LENGTHS[("CE3", "CZ3")],
+                     BOND_ANGLES[("CD2", "CE3", "CZ3")],
+                     180.0)
+    residue.get_atom("CZ3").set_coor(CZ3)
+    atoms["CZ3"] = CZ3
+    
+    CH2 = place_atom(NE1, CE2, CZ2,
+                     BOND_LENGTHS[("CZ2", "CH2")],
+                     BOND_ANGLES[("CE2", "CZ2", "CH2")],
+                     180.0)
+    residue.get_atom("CH2").set_coor(CH2)
+    atoms["CH2"] = CH2
 
 def build_backbone(res, prev, phi, psi):
     omega = OMEGA["trans"]["angle"]

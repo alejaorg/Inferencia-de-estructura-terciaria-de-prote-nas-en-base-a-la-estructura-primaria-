@@ -107,6 +107,12 @@ BOND_LENGTHS = {
 # ("CD2", "CE2"): 1.400,
 ("CE2", "CZ2"): 1.390,
 ("CZ2", "CH2"): 1.390,
+("CG",  "CD2"):  1.365,
+("CD1", "NE1"):  1.370,
+("NE1", "CE2"):  1.370,
+("CD2", "CE3"):  1.398,
+("CE3", "CZ3"):  1.382,
+("CZ3", "CH2"):  1.400,
 
 # ===== TYR =====
 # ("CB", "CG"): 1.510,
@@ -242,6 +248,12 @@ BOND_ANGLES = {
 # ("CB", "CG", "CD2"): 126.0,
 ("CG", "CD1", "NE1"): 108.0,
 ("CD2", "CE2", "CZ2"): 120.0,
+("CD1", "NE1", "CE2"):  108.0,
+("NE1", "CE2", "CZ2"):  122.0,
+("CG",  "CD2", "CE3"):  133.0,
+("CD2", "CE3", "CZ3"):  118.0,   
+("CE3", "CZ3", "CH2"):  121.5,
+("CE2", "CZ2", "CH2"):  121.5,
 
 # ===== TYR =====
 # ("N", "CA", "CB"): 110.5,
@@ -419,3 +431,21 @@ VAN_DER_WAALS_RADIUS = {
 }
 
 VAN_DER_WAALS_TOLERANCE = 0.8
+
+BIFURCATIONS = {
+    "LEU": ("CD1", "CD2", "CG", "CB", 120.0),
+    "ASP": ("OD1", "OD2", "CG", "CB", 180.0),
+    "ASN": ("OD1", "ND2", "CG", "CB", 180.0),
+    "GLU": ("OE1", "OE2", "CD", "CG", 180.0),
+    "GLN": ("OE1", "NE2", "CD", "CG", 180.0),
+    "ARG": ("NH1", "NH2", "CZ", "NE", 180.0)
+}
+
+ARG_BIFURCATION = {
+    "parent":      "CZ",
+    "grandparent": "NE",
+    "atom1":       "NH1",
+    "atom2":       "NH2",
+    "offset1":     120.0,   # NE-CZ-NH1
+    "offset2":    -120.0,   # NE-CZ-NH2
+}

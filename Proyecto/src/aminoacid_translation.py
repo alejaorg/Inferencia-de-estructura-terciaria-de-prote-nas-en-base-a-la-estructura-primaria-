@@ -4,7 +4,7 @@ Atoms_composition = {
     "ALA": ["N", "CA", "C", "O", "CB"],
     "VAL": ["N", "CA", "C", "O", "CB", "CG1", "CG2"],
     "LEU": ["N", "CA", "C", "O", "CB", "CG", "CD1", "CD2"],
-    "ILE": ["N", "CA", "C", "O", "CB", "CG1", "CG2", "CD1"],
+    "ILE": ["N", "CA", "C", "O", "CB", "CG1", "CD1", "CG2"],
     "MET": ["N", "CA", "C", "O", "CB", "CG", "SD", "CE"],
     "PHE": ["N", "CA", "C", "O", "CB", "CG", "CD1", "CD2", "CE1", "CE2", "CZ"],
     "TYR": ["N", "CA", "C", "O", "CB", "CG", "CD1", "CD2", "CE1", "CE2", "CZ", "OH"],

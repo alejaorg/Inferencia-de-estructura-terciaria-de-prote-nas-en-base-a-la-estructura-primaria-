@@ -138,6 +138,56 @@ def sample_rotamer():
 def place_CB(N, CA, C):
     return place_atom(C, N, CA, BOND_LENGTHS[("CA","CB")], 109.5, 122.5)
 
+def place_aromatic_ring(residue, atoms, chi2):
+    CB = atoms["CB"]
+    CG = atoms["CG"]
+    CA = atoms["CA"]
+        
+    if residue.name == "HIS":
+        CD2 = place_atom(CA, CB, CG,
+                     BOND_LENGTHS.get(("CG", "CD2")), 122.0, 
+                     chi2 + 180.0)
+        residue.get_atom("CD2").set_coor(CD2)
+        atoms["CD2"] = CD2
+        
+        ND1 = atoms["ND1"]
+        CE1 = place_atom(CB, CG, ND1,
+                        BOND_LENGTHS.get(("CD1", "CE1")), BOND_ANGLES.get(("CG", "CD1", "CE1")),
+                        180.0)
+        residue.get_atom("CE1").set_coor(CE1)
+        atoms["CE1"] = CE1
+        NE2 = place_atom(CG, ND1, CE1,
+                        BOND_LENGTHS.get(("CE1", "NE2")), BOND_ANGLES.get(("ND1", "CE1", "NE2")),
+                        0.0)
+        residue.get_atom("NE2").set_coor(NE2)
+        atoms["NE2"] = NE2
+    
+    else:    
+        CD2 = place_atom(CA, CB, CG,
+                     BOND_LENGTHS.get(("CG", "CD2")), BOND_ANGLES.get(("CB", "CG", "CD2")), 
+                     chi2 + 180.0)
+        residue.get_atom("CD2").set_coor(CD2)
+        atoms["CD2"] = CD2
+        
+        CD1 = atoms["CD1"]
+        CE1 = place_atom(CB, CG, CD1,
+                        BOND_LENGTHS.get(("CD1", "CE1")), BOND_ANGLES.get(("CG", "CD1", "CE1")),
+                        180.0)
+        residue.get_atom("CE1").set_coor(CE1)
+        atoms["CE1"] = CE1
+        
+        CE2 = place_atom(CB, CG, CD2,
+                        BOND_LENGTHS.get(("CD2", "CE2")), BOND_ANGLES.get(("CG", "CD2", "CE2")),
+                        180.0)
+        residue.get_atom("CE2").set_coor(CE2)
+        atoms["CE2"] = CE2
+        
+        CZ = place_atom(CG, CD1, CE1,
+                    BOND_LENGTHS.get(("CE1", "CZ")), BOND_ANGLES.get(("CD1", "CE1", "CZ")),
+                    0.0)
+        residue.get_atom("CZ").set_coor(CZ)
+        atoms["CZ"] = CZ
+
 def build_sidechain(residue):
     
     name = residue.name
@@ -257,7 +307,9 @@ def try_build_sidechain(residue, built_residues):
                 cg2 = place_atom(N, CA, CB, length, 110.1, chi_angles[0] + 120.0)
                 cg2_atom.set_coor(cg2)
                 atoms["CG2"] = cg2
-                
+        
+        if residue.name in ("PHE", "TYR", "HIS"):
+            place_aromatic_ring(residue, atoms, chi_angles[1])
         if not detect_clashes_between(residue, built_residues):
             return True
     return False

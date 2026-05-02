@@ -29,3 +29,6 @@ Aminoacid_map = {
     "P": "PRO", "Q": "GLN", "R": "ARG", "S": "SER",
     "T": "THR", "V": "VAL", "W": "TRP", "Y": "TYR"
 }
+
+# TRP 
+# ARG GLN ASN LEU GLU ASP

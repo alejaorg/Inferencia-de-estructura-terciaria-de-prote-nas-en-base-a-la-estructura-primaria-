@@ -9,7 +9,7 @@ from protein import *
 from energy import *
 from energyModel import *
 
-p = Protein("VGASVVLEHAA")
+p = Protein("ACDHI")
 p.init_random_structure()
 
 
@@ -24,12 +24,10 @@ e = Energy(model)
 energy = e.getEnergies(p)
 
 print(energy)
-
-
         
-#clashes = detect_clashes(p)
-#if clashes:
-#    print("Clash in some point")
+clashes = detect_clashes(p)
+if clashes:
+   print("Clash in some point")
 
 
 #for res in p.residues:

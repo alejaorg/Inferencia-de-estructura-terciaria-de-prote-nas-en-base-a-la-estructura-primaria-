@@ -8,11 +8,12 @@ class EnergyModel:
         
         self.local_terms = {
             2: {"d0": 5.5, "k": 5.0},
-            3: {"d0": 6.8, "k": 5.0}
+            3: {"d0": 6.8, "k": 5.0},
+            4: {"d0": 6.4, "k": 3.0} 
         }
         
         self.sigma = 6.5
-        self.epsilon = 1.0
+        self.epsilon = 2.0
         
         
         self.hydrophobic_k = 1.0

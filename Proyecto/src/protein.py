@@ -412,17 +412,7 @@ def build_residue_clashes(res, built, prev, max_backbone=50):
         
     return new_prev, False, "failed"    
 
-p = Protein("GASV")
-p.init_random_structure()   
 
-for res in p.residues:
-    print(res)
-    for atom in res.get_atoms():
-        print(atom)
-        
-clashes = detect_clashes(p)
-if clashes:
-    print("Clash in some point")
         
         
         

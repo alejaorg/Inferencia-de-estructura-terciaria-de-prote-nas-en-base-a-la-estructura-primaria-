@@ -66,7 +66,7 @@ class Annealing:
         self.T *= self.alpha
         
     def heat(self):
-        self.T *= 3.0
+        self.T *= 6.0
         
     def perturb(self, protein):
         

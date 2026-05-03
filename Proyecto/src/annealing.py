@@ -4,12 +4,13 @@ import random
 from protein import *
 
 class Annealing:
-    def __init__(self, energy_model, T0=10.0, alpha=0.995, steps=10000):
+    def __init__(self, energy_model, T0=10.0, alpha=0.995, steps=10000, stucked_threshold=150):
         
         self.energy = energy_model
         self.T = T0
         self.alpha = alpha
         self.steps = steps
+        self.stucked_threshold = stucked_threshold
         
     
     def run(self, protein):
@@ -22,7 +23,7 @@ class Annealing:
         
         history = []
         
-        for part_E in range(self.steps):
+        for step in range(self.steps):
             
             new_protein = copy.deepcopy(current)
             self.perturb(new_protein)
@@ -38,9 +39,18 @@ class Annealing:
                 if new_E < best_E:
                     best = copy.deepcopy(new_protein)
                     best_E = new_E
+                    self.stucked_threshold = 150
+            else:
+                self.stucked_threshold -= 1
             
-            self.cool()
+            if self.stucked_threshold != 0:
+                self.cool()
+            else:
+                self.heat()
+                self.stucked_threshold = 150
             history.append(current_E)
+            if step % 20 == 0:
+                print(f"Step {step:4d} | E={current_E:.3f} | best={best_E:.3f} | T={self.T:.4f}")
 
         return best, best_E, history
     
@@ -54,6 +64,9 @@ class Annealing:
     
     def cool(self):
         self.T *= self.alpha
+        
+    def heat(self):
+        self.T *= 3.0
         
     def perturb(self, protein):
         

@@ -189,6 +189,16 @@ def place_aromatic_ring(residue, atoms, chi2):
                     0.0)
         residue.get_atom("CZ").set_coor(CZ)
         atoms["CZ"] = CZ
+        
+        if residue.name == "TYR":
+            OH = place_atom(
+                CE1, CE2, CZ,
+                BOND_LENGTHS.get(("CZ", "OH"), 1.36),
+                BOND_ANGLES.get(("CE1", "CZ", "OH"), 120.0),
+                180.0
+            )
+            residue.get_atom("OH").set_coor(OH)
+            atoms["OH"] = OH
 
 def build_sidechain(residue):
     
@@ -340,7 +350,8 @@ def infer_parent(atom_name):
         "OD2": "CG",
         "NE": "CD",
         "NH1": "CZ",
-        "NH2": "CZ"
+        "NH2": "CZ",
+        "OH": "CZ",
     }
 
     return hierarchy.get(atom_name, None)
@@ -380,18 +391,16 @@ def detect_clashes(protein, tolerance=VAN_DER_WAALS_TOLERANCE):
             if not np.all(atom.coord == 0.0):
                 atoms.append((res, atom))
 
-    # Compara los pares de atomos
+    
     for i in range(len(atoms)):
         res_i, atom_i = atoms[i]
         for j in range(i + 1, len(atoms)):
             res_j, atom_j = atoms[j]
 
-            # Ignore pairs 1-2 & 1-3 in the same residue
-            # By definition, as we build the residuesthis is always a clash
+            
             if res_i.index == res_j.index:
                 continue
 
-            # Ignore pairs between consecutive residues as the distance between them is define by the angles omega/phi/psi
             backbone = {"N", "CA", "C", "O"}
             if abs(res_i.index - res_j.index) == 1:
                 if atom_i.name in backbone and atom_j.name in backbone:
@@ -402,7 +411,7 @@ def detect_clashes(protein, tolerance=VAN_DER_WAALS_TOLERANCE):
             r_i = VAN_DER_WAALS_RADIUS.get(atom_i.name[0], 1.70)
             r_j = VAN_DER_WAALS_RADIUS.get(atom_j.name[0], 1.70)
             threshold = (r_i + r_j) * tolerance
-            #Rosetta use a dinamic algorithm to be permisive with clashes, but it's aprox a 0.8 tolerance with the real Van Der Waals radius
+            
             if dist < threshold:
                 clashes.append({
                     "res1":  res_i,
@@ -416,30 +425,59 @@ def detect_clashes(protein, tolerance=VAN_DER_WAALS_TOLERANCE):
     return clashes
 
 def detect_clashes_between(res, other_res, tolerance=VAN_DER_WAALS_TOLERANCE):
+    
+    backbone = {"N", "CA", "C", "O"}
+
+    new_atoms  = [a for a in res.get_atoms() if not np.all(a.coord == 0.0)]
+    if not new_atoms:
+        return []
+
+    coords_new  = np.array([a.coord for a in new_atoms])      
+    names_new   = [a.name for a in new_atoms]
+    # Radio VdW de cada átomo nuevo
+    radii_new   = np.array([VAN_DER_WAALS_RADIUS.get(a.name[0], 1.70)
+                            for a in new_atoms])                 
+
+    old_atoms   = []
+    old_indices = []   
+    for r in other_res:
+        for a in r.get_atoms():
+            if not np.all(a.coord == 0.0):
+                old_atoms.append(a)
+                old_indices.append(r.index)
+
+    if not old_atoms:
+        return []
+
+    coords_old  = np.array([a.coord for a in old_atoms])        
+    names_old   = [a.name for a in old_atoms]
+    radii_old   = np.array([VAN_DER_WAALS_RADIUS.get(a.name[0], 1.70)
+                            for a in old_atoms])                 
+    old_indices = np.array(old_indices)                          
+
+    diff  = coords_new[:, np.newaxis, :] - coords_old[np.newaxis, :, :]
+    dists = np.sqrt(np.sum(diff ** 2, axis=2))                  
+
+    thresholds = (radii_new[:, np.newaxis] + radii_old[np.newaxis, :]) * tolerance
+
+    clash_mask = dists < thresholds                             
+
+    res_index = res.index
+    consecutive = np.abs(res_index - old_indices) == 1         
+
+    for mi, name_i in enumerate(names_new):
+        if name_i in backbone:
+            for ki, name_k in enumerate(names_old):
+                if consecutive[ki] and name_k in backbone:
+                    clash_mask[mi, ki] = False
+
+    if not np.any(clash_mask):
+        return []
 
     clashes = []
-    backbone = {"N", "CA", "C", "O"}
-    
-    for a in other_res:
-        for atom_i in res.get_atoms():
-            if np.all(atom_i.coord == 0.0):
-                continue
-            for atom_j in a.get_atoms():
-                if np.all(atom_j.coord == 0.0):
-                    continue
-                
-                if abs(res.index - a.index) == 1:
-                    if atom_i.name in backbone and atom_j.name in backbone:
-                        continue
-    
-                dist = np.linalg.norm(atom_i.coord - atom_j.coord)
-
-                r_i = VAN_DER_WAALS_RADIUS.get(atom_i.name[0], 1.70)
-                r_j = VAN_DER_WAALS_RADIUS.get(atom_j.name[0], 1.70)
-                threshold = (r_i + r_j) * tolerance
-                #Rosetta use a dinamic algorithm to be permisive with clashes, but we found an aprox 0.8 tolerance with the real Van Der Waals radius is admisible
-                if dist < threshold:
-                    clashes.append((atom_i.name, atom_j.name, dist))
+    mi_arr, ki_arr = np.where(clash_mask)
+    for mi, ki in zip(mi_arr, ki_arr):
+        clashes.append((names_new[mi], names_old[ki], float(dists[mi, ki])))
 
     return clashes
 

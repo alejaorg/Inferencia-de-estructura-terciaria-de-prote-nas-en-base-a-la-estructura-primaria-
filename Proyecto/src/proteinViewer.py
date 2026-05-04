@@ -3,9 +3,6 @@ protein_viewer.py
 -----------------
 Clase para visualizar proteínas en 3D a partir de archivos .pdb.
 
-Dependencias:
-    pip install matplotlib numpy biopython
-
 Uso básico:
     viewer = ProteinViewer("mi_proteina.pdb")
     viewer.show()
@@ -79,12 +76,9 @@ class ProteinViewer:
         self.chains = {}         # Dict: chain_id -> list of CA atoms
         self._load_pdb()
 
-    # ------------------------------------------------------------------ #
-    #  Parseo del archivo PDB (sin dependencias externas)                  #
-    # ------------------------------------------------------------------ #
+
 
     def _load_pdb(self):
-        """Lee el archivo PDB y almacena la información de los átomos."""
         self.atoms.clear()
         self.residues.clear()
         self.chains.clear()
@@ -133,9 +127,7 @@ class ProteinViewer:
               f"{len(self.residues)} residuos | "
               f"{len(self.chains)} cadena(s): {list(self.chains.keys())}")
 
-    # ------------------------------------------------------------------ #
-    #  Helpers de color                                                    #
-    # ------------------------------------------------------------------ #
+
 
     def _color_by_chain(self, atom: dict) -> str:
         chains_sorted = sorted(self.chains.keys())
@@ -150,7 +142,6 @@ class ProteinViewer:
         return RESIDUE_COLORS.get(atom["res_name"], RESIDUE_COLORS["default"])
 
     def _color_by_bfactor(self, atom: dict) -> str:
-        """Placeholder – requeriría leer B-factor; usa degradado azul-rojo."""
         return "#8888FF"
 
     def _get_color(self, atom: dict, color_by: str) -> str:
@@ -162,12 +153,9 @@ class ProteinViewer:
         fn = dispatch.get(color_by, self._color_by_chain)
         return fn(atom)
 
-    # ------------------------------------------------------------------ #
-    #  Métodos de renderizado                                              #
-    # ------------------------------------------------------------------ #
 
     def _render_backbone(self, ax, color_by: str, alpha: float = 0.8):
-        """Dibuja el backbone conectando alfa-carbonos por cadena."""
+
         for chain_id, ca_atoms in self.chains.items():
             if len(ca_atoms) < 2:
                 continue
@@ -184,10 +172,7 @@ class ProteinViewer:
             ax.add_collection3d(lc)
 
     def _render_ribbon(self, ax, color_by: str):
-        """
-        Pseudo-ribbon: dibuja el backbone con líneas gruesas suavizadas
-        (spline interpolado de alfa-carbonos).
-        """
+
         try:
             from scipy.interpolate import splprep, splev
             use_scipy = True
@@ -213,7 +198,7 @@ class ProteinViewer:
 
     def _render_spheres(self, ax, color_by: str, atom_filter: Optional[str] = None,
                         max_atoms: int = 2000):
-        """Dibuja átomos como esferas (scatter 3D)."""
+        
         atoms = self.atoms
         if atom_filter:
             atoms = [a for a in atoms if a["name"] == atom_filter]
@@ -231,15 +216,11 @@ class ProteinViewer:
         ax.scatter(xs, ys, zs, c=colors, s=20, alpha=0.7, edgecolors="none", depthshade=True)
 
     def _render_backbone_and_sidechains(self, ax, color_by: str):
-        """
-        Estilo similar a AlphaFold:
-        - Backbone grueso conectando N -> CA -> C de cada residuo
-        - Sidechains como líneas finas saliendo del CA
-        """
+
         # Átomos del backbone principal
         BACKBONE_ATOMS = {"N", "CA", "C", "O"}
 
-        # ── Backbone ──────────────────────────────────────────────────
+        # Backbone
         for chain_id, ca_atoms in self.chains.items():
             # Reconstruir orden N->CA->C por residuo
             backbone_coords = []
@@ -267,7 +248,7 @@ class ProteinViewer:
             lc = Line3DCollection(segs, colors=backbone_colors[:-1], linewidths=2.5, alpha=0.9)
             ax.add_collection3d(lc)
 
-        # ── Sidechains ────────────────────────────────────────────────
+        # Sidechains
         sidechain_segs = []
         sidechain_colors = []
 
@@ -293,7 +274,7 @@ class ProteinViewer:
             )
             ax.add_collection3d(lc2)
 
-        # ── Esferas en CA ─────────────────────────────────────────────
+        # Esferas en CA 
         for chain_id, ca_atoms in self.chains.items():
             xs = [a["x"] for a in ca_atoms]
             ys = [a["y"] for a in ca_atoms]
@@ -328,9 +309,7 @@ class ProteinViewer:
             lc = Line3DCollection(bond_segments, colors=bond_colors, linewidths=0.8, alpha=0.6)
             ax.add_collection3d(lc)
 
-    # ------------------------------------------------------------------ #
-    #  API pública                                                         #
-    # ------------------------------------------------------------------ #
+
 
     def show(
         self,
@@ -448,10 +427,6 @@ class ProteinViewer:
         print(f"  Rango Z  : [{min(zs):.1f}, {max(zs):.1f}] Å")
         print(f"{'='*50}\n")
 
-
-# ------------------------------------------------------------------ #
-#  Ejecución directa                                                   #
-# ------------------------------------------------------------------ #
 
 if __name__ == "__main__":
     import sys

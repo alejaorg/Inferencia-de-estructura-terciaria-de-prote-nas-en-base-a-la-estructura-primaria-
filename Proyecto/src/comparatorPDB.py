@@ -16,7 +16,7 @@ def parse_pdb_atoms(filepath, atom_name=None):
                             atom.name,
                             atom.get_vector().get_array()
                         ))
-        break  # solo primer modelo
+        break  
 
     return atoms
 
@@ -74,15 +74,15 @@ def compare_structures(generated_path, reference_path):
     coords_gen = np.array([gen_dict[k] for k in common_keys])
     coords_ref = np.array([ref_dict[k] for k in common_keys])
 
-    print("Alineando estructuras (Kabsch)...")
+    print("Aligning structures (Kabsch)...")
     coords_aligned = align_coords(coords_gen, coords_ref)
 
     rmsd = calculate_rmsd(coords_aligned, coords_ref)
     similarity = rmsd_to_similarity(rmsd)
 
-    print(f"\n📊 Resultados:")
-    print(f"   Átomos comparados : {len(common_keys)}")
+    print(f"\n Results:")
+    print(f"   Compared atoms    : {len(common_keys)}")
     print(f"   RMSD              : {round(rmsd, 3)} Å")
-    print(f"   Similitud         : {similarity}%")
+    print(f"   Similarity        : {similarity}%")
 
     return rmsd, similarity

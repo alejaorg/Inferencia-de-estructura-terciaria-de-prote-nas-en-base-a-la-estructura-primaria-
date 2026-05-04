@@ -1,0 +1,49 @@
+# Base de datos de proteínas reales (20-70 AA)
+# Formato: NOMBRE | PDB | AA | SECUENCIA | DESCRIPCIÓN | URL
+# URL base: https://www.rcsb.org/structure/<PDB>
+
+Crambin                          | 1CRN | 46  | TTCCPSIVARSNFNVCRLPGTPEAICATYTGCIIIPGATCPGDYAN                           | Proteína semilla de col rizada, muy estable
+Cadena B Insulina humana         | 1ZNI | 30  | FVNQHLCGSHLVEALYLVCGERGFFYTPKT                                           | Hormona reguladora de glucosa
+Proteína G B1 (GB1)              | 1PGB | 56  | MTYKLILNGKTLKGETTTEAVDAATAEKVFKQYANDNGVDGEWTYDDATKTFTVTE                 | Dominio de unión a IgG del estreptococo
+Trp-cage miniproteína            | 1L2Y | 20  | NLYIQWLKDGGPSSGRPPPS                                                     | Miniproteína de plegado ultrarrápido
+Villin headpiece HP36            | 1VII | 36  | MLSDEDFKAVFGMTRSAFANLPLWKQQNLKKEKGLF                                     | Dominio de actina, benchmark de plegado
+Ubiquitina humana                | 1UBQ | 76  | MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG | Marcador de degradación proteica
+Rubredoxina                      | 1IRO | 53  | MKKYVCTVCGYEYDPAAEGDPDNGVKPGTSFDDLPADWVCPVCGAPKSEFEAA                   | Proteína de transferencia de electrones
+BPTI inhibidor tripsina          | 5PTI | 58  | RPDFCLEPPYTGPCKARIIRYFYNAKAGLCQTFVYGGCRAKRNNFKSAEDCMRTCGGA              | Inhibidor de proteasa bovino, muy estudiado
+Zinc finger Zif268               | 1ZAA | 23  | YKCPECGKSFSQKSDLVRHQRTHTG                                                | Dedo de zinc clásico, unión a DNA
+Melitina veneno abeja            | 2MLT | 26  | GIGAVLKVLTTGLPALISWIKRKRQQ                                               | Péptido antimicrobiano del veneno de abeja
+Proteína L                       | 2PTL | 62  | MEEVTIKANLIFANGSTQTAEFKGTFEKATSEAYAYADTLKKYLKQTAEAKDTDAAFKEIAGK         | Dominio de unión a IgG de Peptostreptococcus
+Engrailed homeodomain            | 1ENH | 61  | RPRTAFSSEQLARLKREFNENRYLTERRRQQLSSELGLNEAQIKIWFQNKRAKI                  | Factor de transcripción de Drosophila
+Alfa-conotoxina GI               | 1NOT | 20  | ECCNPACGRHYSC                                                            | Toxina de cono, bloquea receptores nicotínicos
+WW domain PIN1                   | 1PIN | 39  | KLPPGWEKRMSRSSGRVYYFNHITNASQWERPSGNSSSG                                  | Dominio de interacción proteína-proteína
+Defensina HNP-1 humana           | 3GNY | 30  | ACYCRIPACIAGERRYGTCIYQGRLWAFCC                                           | Péptido antimicrobiano innato humano
+Omega-conotoxina MVIIA           | 1MVI | 25  | CKGKGAKCSRLMYDCCTGSCRSGKC                                                | Toxina de cono, bloqueador de canales Ca2+
+Glucagón humano                  | 1GCN | 29  | HSQGTFTSDYSKYLDSRRAQDFVQWLMNT                                            | Hormona pancreática reguladora de glucosa
+Avian pancreatic polypeptide     | 1PPT | 36  | GPSQPTYPGDDAPVEDLIRFYNDLQQYLNVVTRHRY                                     | Hormona pancreática reguladora de apetito
+Cecropina A                      | 1CEA | 37  | KWKLFKKIEKVGQNIRDGIIKAGPAVAVVGQATQIAK                                    | Péptido antimicrobiano de insecto
+Magainina 2                      | 2MAG | 23  | GIGKFLHSAKKFGKAFVGEIMNS                                                  | Péptido antimicrobiano de rana Xenopus
+Apamin veneno abeja              | 1APM | 18  | CNCKAPETALCARRCQQH                                                       | Neurotoxina del veneno de abeja
+Nociceptina orfanina FQ          | 1RON | 17  | FGGFTGARKSARKLANQ                                                        | Neuropéptido opioide endógeno humano
+Tendamistat                      | 1HOE | 74  | DKATIPSESPFAANACNLKVDETGDCKNKKLWFESPAQYCIERPEGDTIVGQRTDPKFGNTCSYQCWKPYLKDNQF | Inhibidor de alfa-amilasa bacteriana
+Cold shock protein CspA          | 1MJC | 70  | MGKVNVITEENPVGFKEAQKAGDKVTLEDGQVFSVADAQKIAQELGAKVTVLQGKLSATSEQAQSGDNAKM | Respuesta al choque frío en E. coli
+Lambda Cro represor              | 5CRO | 66  | MEQRITLKDYAMRFGQTKTAKDLGVYQSAINKAIHAGRKIFLTINADGSVYAEEVKPFPSNKKTTA      | Represor del fago lambda
+Arc represor P22                 | 1ARR | 53  | MKVNRLLPGELAKHMAEDMGQYLNQSGKDYIERLLEELERLKQEIEQ                         | Represor transcripcional del fago P22
+Alpha3D                          | 2A3D | 73  | MGSWAEFKQRLAAIKTRLQALGGSEAELAAFEKEIAAFESELQAYKGKGNPEVEALRKEAAAIRDELQAYRHN | Proteína hélice-3 diseñada computacionalmente
+Proteína CI2 inhibidor           | 2CI2 | 65  | KTEWPELVGKSVEEAKKVILQDKPEAQIIVLPVGTIVTMEYRIDRVRLFVDKLDNIAQVPRVG         | Inhibidor de quimotripsina de cebada
+Betanova péptido beta            | 1NAO | 20  | RGWSVQNGKYTNNGKTTEGR                                                     | Péptido beta diseñado miniatura
+Fragmento SH3 PI3-kinasa         | 1PKS | 66  | DTIVVHESSGLNKDEGIQETAHKKTFLPVRESVLPTKTFNPSSPVKSFETTHECKMVHYTINAHNVIVKK  | Dominio de señalización celular SH3
+EF-hand calmodulina frag.        | 1CMB | 30  | ADQLTEEQIAEFKEAFALFDKDGDGTITTK                                           | Fragmento sensor de calcio de calmodulina
+Helix hairpin de lisozima        | 1LMB | 38  | MTIADKKYAQEANDKFNKELKALPAPIEKYFKSHGEQL                                   | Motivo hélice-vuelta-hélice de lisozima
+Proteína Pin de E. coli          | 1PHR | 54  | MKQIEDKIEEILSKIYHIENEIARIKKLIGEKLTAEQKQILQKLEAGYDPDKAQNQ                | Toxina-antitoxina de E. coli
+FK506 binding protein seg.       | 1FKJ | 60  | GVQVETISPGDGRTFPKRGQTCVVHYTGMLEDGKKFDSSRDRNKPFKFMLGKQEVIRGWEE          | Inmunofilina, receptor de FK506
+Colicin E9 immunity protein      | 1IMQ | 86  | MASNKSTPIILSADETILPAFATFGNPPNENVKEVNAGPKKMNRGNDIKQIITQIGKISEVDLQSEVLPEAAKLMPVDVEEGMTKEAAK | Proteína inmunidad de bacteriocina
+Ribonucleasa A seg.              | 1RBX | 42  | KETAAAKFERQHMDSSTSAASSSNYCNQMMKSRNLTKDRCK                                | Fragmento N-terminal de ribonucleasa pancreática
+Hélice A mioglobina              | 1MBO | 24  | VLSEGEWQLVLHVWAKVEADVAGHGQ                                               | Hélice A de la mioglobina de cachalote
+Melanotan II análogo MSH         | 1MSH | 22  | SYSMEHFRWGKPVGKKRRPVKV                                                   | Hormona estimulante de melanocitos
+Péptido señal OmpA               | 1OMP | 21  | MKKTAIAIAVALAGFATVAQA                                                    | Péptido señal de proteína de membrana externa
+Vasoactivo intestinal VIP        | 1ROO | 28  | HSDAVFTDNYTRLRKQMAVKKYLNSILN                                             | Neuropéptido vasoactivo intestinal
+Péptido C insulina               | 1EFE | 31  | EAEDLQVGQVELGGGPGAGSLQPLALEGSLQ                                          | Péptido conector de la proinsulina humana
+Toxina delta de estafilococo     | 1D4L | 26  | MAQDIISTIGDLVKWIIDTVNKFTKK                                               | Toxina formadora de poros
+Preproencefalina frag.           | 1PLW | 20  | YGGFMRGLGGYRKKKKMDEL                                                     | Precursor de encefalinas endógenas
+Peptido BNP-32 natriurético      | 1BNP | 32  | SPKMVQGSGCFGRKMDRISSSSGLGCKVLRRH                                         | Hormona cardíaca reguladora de presión arterial
+Proteína GB3 (variante GB1)      | 1IGD | 61  | MTYKLILNGKTLKGETTTEAVDAATAEKVFKQYANDNGVDGEWTYDDATKTFTVTEKDGKTYTFTVTE    | Variante estabilizada del dominio GB1

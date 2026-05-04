@@ -1,12 +1,6 @@
 import os
 from aminoacid_translation import Atoms_composition 
 
-# ── Define your output folder here ───────────────────────────────────────────
-# This file lives in:      project/
-#                              your_code/   ← este archivo está aquí
-#                              outputs/     ← carpeta hermana donde se guarda el PDB
-#
-# Adjust the folder name to match yours:
 OUTPUT_FOLDER = os.path.join(os.path.dirname(__file__), "..", "data")
 
 

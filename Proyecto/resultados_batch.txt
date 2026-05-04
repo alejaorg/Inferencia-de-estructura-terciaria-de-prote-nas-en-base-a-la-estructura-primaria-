@@ -1,0 +1,68 @@
+==========================================================================================
+  RESULTADOS BATCH — INFERENCIA DE ESTRUCTURA TERCIARIA
+==========================================================================================
+
+Proteína                            PDB    AA    RMSD(Å)    Similitud%   Energía        Tiempo(s)  Estado
+------------------------------------------------------------------------------------------
+Crambin                             1CRN   46    8.836      55.82        3484.3         77.9       OK
+Cadena B Insulina humana            1ZNI   30    7.933      60.34        2050.4         112.7      OK
+Proteína G B1 (GB1)                 1PGB   56    11.910     40.45        5858.3         213.7      OK
+Trp-cage miniproteína               1L2Y   20    6.661      66.70        986.5          38.1       OK
+Villin headpiece HP36               1VII   36    —          —            2834.7         236.4      ERROR_CMP
+Ubiquitina humana                   1UBQ   76    15.658     21.71        7415.7         618.1      OK
+Rubredoxina                         1IRO   53    11.236     43.82        4501.7         169.8      OK
+BPTI inhibidor tripsina             5PTI   58    12.442     37.79        5040.2         371.8      OK
+Zinc finger Zif268                  1ZAA   23    7.946      60.27        1346.0         106.6      OK
+Melitina veneno abeja               2MLT   26    8.728      56.36        1490.2         234.1      OK
+Proteína L                          2PTL   62    16.393     18.04        6493.5         627.8      OK
+Engrailed homeodomain               1ENH   61    8.029      59.85        4178.0         806.9      OK
+Alfa-conotoxina GI                  1NOT   20    6.281      68.60        532.5          25.5       OK
+WW domain PIN1                      1PIN   39    14.132     29.34        2563.6         195.7      OK
+Defensina HNP-1 humana              3GNY   30    10.203     48.98        2207.4         142.8      OK
+Omega-conotoxina MVIIA              1MVI   25    12.304     38.48        1040.7         108.0      OK
+Glucagón humano                     1GCN   29    12.079     39.61        2029.2         176.8      OK
+Avian pancreatic polypeptide        1PPT   36    10.649     46.76        2834.4         274.0      OK
+Cecropina A                         1CEA   37    8.682      56.59        2684.9         204.5      OK
+Magainina 2                         2MAG   23    9.112      54.44        1443.2         95.1       OK
+Apamin veneno abeja                 1APM   18    11.541     42.30        921.5          112.5      OK
+Nociceptina orfanina FQ             1RON   17    7.826      60.87        918.6          103.9      OK
+Tendamistat                         1HOE   74    16.027     19.86        7807.3         857.0      OK
+Cold shock protein CspA             1MJC   70    16.755     16.22        8166.6         560.6      OK
+Lambda Cro represor                 5CRO   66    13.030     34.85        6497.5         677.8      OK
+Arc represor P22                    1ARR   53    10.867     45.67        3952.7         542.1      OK
+Alpha3D                             2A3D   73    12.691     36.54        7926.5         888.8      OK
+Proteína CI2 inhibidor              2CI2   65    10.606     46.97        7114.4         730.5      OK
+Betanova péptido beta               1NAO   20    —          —            911.6          98.2       ERROR_CMP
+Fragmento SH3 PI3-kinasa            1PKS   66    14.016     29.92        6339.2         734.5      OK
+EF-hand calmodulina frag.           1CMB   30    9.595      52.03        1738.1         154.5      OK
+Helix hairpin de lisozima           1LMB   38    9.697      51.52        2744.2         322.3      OK
+Proteína Pin de E. coli             1PHR   54    14.245     28.77        4922.2         654.9      OK
+FK506 binding protein seg.          1FKJ   60    13.544     32.28        5328.5         809.4      OK
+Colicin E9 immunity protein         1IMQ   86    14.020     29.90        10225.4        1118.0     OK
+Ribonucleasa A seg.                 1RBX   42    13.833     30.83        2449.6         436.9      OK
+Hélice A mioglobina                 1MBO   24    9.525      52.38        1983.0         74.1       OK
+Melanotan II análogo MSH            1MSH   22    9.740      51.30        1232.0         231.8      OK
+Péptido señal OmpA                  1OMP   21    7.412      62.94        1313.5         30.5       OK
+Vasoactivo intestinal VIP           1ROO   28    6.693      66.54        2139.2         184.6      OK
+Péptido C insulina                  1EFE   31    9.348      53.26        2092.7         82.7       OK
+Toxina delta de estafilococo        1D4L   26    10.696     46.52        1683.5         201.7      OK
+Preproencefalina frag.              1PLW   20    3.513      82.44        886.1          201.8      OK
+Peptido BNP-32 natriurético         1BNP   32    7.777      61.12        2141.8         267.2      OK
+Proteína GB3 (variante GB1)         1IGD   61    13.374     33.13        6382.2         491.4      OK
+------------------------------------------------------------------------------------------
+
+ESTADÍSTICAS GLOBALES
+  Proteínas procesadas : 45
+  Completadas con éxito: 43
+  Errores              : 2
+
+  RMSD medio           : 10.828 Å
+  RMSD mínimo          : 3.513 Å  (Preproencefalina frag.)
+  RMSD máximo          : 16.755 Å  (Cold shock protein CspA)
+
+  Similitud media      : 45.86%
+  Mejor similitud      : 82.44%  (Preproencefalina frag.)
+  Peor similitud       : 16.22%  (Cold shock protein CspA)
+
+  Tiempo medio/proteína: 350.5s
+  Tiempo total         : 15069.4s

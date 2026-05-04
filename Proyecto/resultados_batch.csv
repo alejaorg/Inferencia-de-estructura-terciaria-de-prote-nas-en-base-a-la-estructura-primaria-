@@ -1,0 +1,46 @@
+name,pdb,aa,status,rmsd,similarity,energy,time_s
+Crambin,1CRN,46,OK,8.836,55.82,3484.336,77.9
+Cadena B Insulina humana,1ZNI,30,OK,7.933,60.34,2050.37,112.7
+Proteína G B1 (GB1),1PGB,56,OK,11.91,40.45,5858.269,213.7
+Trp-cage miniproteína,1L2Y,20,OK,6.661,66.7,986.507,38.1
+Villin headpiece HP36,1VII,36,ERROR_CMP,,,2834.725,236.4
+Ubiquitina humana,1UBQ,76,OK,15.658,21.71,7415.736,618.1
+Rubredoxina,1IRO,53,OK,11.236,43.82,4501.741,169.8
+BPTI inhibidor tripsina,5PTI,58,OK,12.442,37.79,5040.175,371.8
+Zinc finger Zif268,1ZAA,23,OK,7.946,60.27,1345.95,106.6
+Melitina veneno abeja,2MLT,26,OK,8.728,56.36,1490.165,234.1
+Proteína L,2PTL,62,OK,16.393,18.04,6493.494,627.8
+Engrailed homeodomain,1ENH,61,OK,8.029,59.85,4178.001,806.9
+Alfa-conotoxina GI,1NOT,20,OK,6.281,68.6,532.537,25.5
+WW domain PIN1,1PIN,39,OK,14.132,29.34,2563.557,195.7
+Defensina HNP-1 humana,3GNY,30,OK,10.203,48.98,2207.406,142.8
+Omega-conotoxina MVIIA,1MVI,25,OK,12.304,38.48,1040.676,108.0
+Glucagón humano,1GCN,29,OK,12.079,39.61,2029.151,176.8
+Avian pancreatic polypeptide,1PPT,36,OK,10.649,46.76,2834.404,274.0
+Cecropina A,1CEA,37,OK,8.682,56.59,2684.948,204.5
+Magainina 2,2MAG,23,OK,9.112,54.44,1443.172,95.1
+Apamin veneno abeja,1APM,18,OK,11.541,42.3,921.519,112.5
+Nociceptina orfanina FQ,1RON,17,OK,7.826,60.87,918.596,103.9
+Tendamistat,1HOE,74,OK,16.027,19.86,7807.326,857.0
+Cold shock protein CspA,1MJC,70,OK,16.755,16.22,8166.643,560.6
+Lambda Cro represor,5CRO,66,OK,13.03,34.85,6497.499,677.8
+Arc represor P22,1ARR,53,OK,10.867,45.67,3952.722,542.1
+Alpha3D,2A3D,73,OK,12.691,36.54,7926.495,888.8
+Proteína CI2 inhibidor,2CI2,65,OK,10.606,46.97,7114.401,730.5
+Betanova péptido beta,1NAO,20,ERROR_CMP,,,911.649,98.2
+Fragmento SH3 PI3-kinasa,1PKS,66,OK,14.016,29.92,6339.163,734.5
+EF-hand calmodulina frag.,1CMB,30,OK,9.595,52.03,1738.096,154.5
+Helix hairpin de lisozima,1LMB,38,OK,9.697,51.52,2744.244,322.3
+Proteína Pin de E. coli,1PHR,54,OK,14.245,28.77,4922.152,654.9
+FK506 binding protein seg.,1FKJ,60,OK,13.544,32.28,5328.547,809.4
+Colicin E9 immunity protein,1IMQ,86,OK,14.02,29.9,10225.435,1118.0
+Ribonucleasa A seg.,1RBX,42,OK,13.833,30.83,2449.583,436.9
+Hélice A mioglobina,1MBO,24,OK,9.525,52.38,1982.994,74.1
+Melanotan II análogo MSH,1MSH,22,OK,9.74,51.3,1231.995,231.8
+Péptido señal OmpA,1OMP,21,OK,7.412,62.94,1313.516,30.5
+Vasoactivo intestinal VIP,1ROO,28,OK,6.693,66.54,2139.165,184.6
+Péptido C insulina,1EFE,31,OK,9.348,53.26,2092.679,82.7
+Toxina delta de estafilococo,1D4L,26,OK,10.696,46.52,1683.457,201.7
+Preproencefalina frag.,1PLW,20,OK,3.513,82.44,886.052,201.8
+Peptido BNP-32 natriurético,1BNP,32,OK,7.777,61.12,2141.805,267.2
+Proteína GB3 (variante GB1),1IGD,61,OK,13.374,33.13,6382.166,491.4
